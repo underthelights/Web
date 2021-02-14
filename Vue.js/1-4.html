@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{ nextYear('Hello')}}
+        <input :type="text" :value="inputData">
+        <a :href="getLink('MBCNEWS11')">Above the time</a>
+        <br>
+        <br>
+        {{year}}<br>
+        <button v-on:click="plus">plus</button>
+        <button v-on:click="minus">minus</button>
+
+        <br>
+        <br>
+        
+        <form v-on:submit="submit">
+            <input type="text"><br>
+            <button type="submit">submit</button>
+        </form>
+
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                year:2020,
+                person: {
+                    name : 'BTS',
+                    age : 20
+                },
+                inputData: 'hello',
+                type : 'text',
+                link: 'https://www.youtube.com/'
+            },
+            methods:{
+                submit(){
+                    alert('submitted');
+                    console.log('hello');//reload
+                },
+                plus(){
+                    this.year++;
+                },
+                minus(){
+                    this.year--;
+                },
+                alert(){
+                    alert('hey fuck you');
+                },
+                getLink(channel){
+                    return this.link + channel;
+                },
+                nextYear: function(greeting){
+                    return greeting + '!' + this.person.name + 'is ' + (this.person.age+1) + 'years old next year';
+                    //return this.person.name + '는 내년에 ' + (this.person.age +1) + '살 입니다 ';
+                },
+                otherMethod: function(){
+                    this.nextYear();
+                }
+            
+            }
+        })
+    </script>
+
+</body>
+</html>
