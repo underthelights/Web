@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>뷰 기초 익히기</title>
+    <style>
+        .red{
+            color:red;
+        }
+        .bold{
+            font-weight: bold;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <div class="red bold">HELL</div> -->
+        <!-- <div :class="{red: isRed, 'font-bold': isBold }">HELL</div> -->
+
+        <div :style="{ color: red, fontSize: size}">hello</div>
+        <button @click="update">click</button>
+
+        <!-- {{ message.split('').reverse().join('') }}
+        {{ message.split('').reverse().join('') }}
+        {{ message.split('').reverse().join('') }} -->
+
+        <!-- {{ message }}<br>
+        <button @click="changeMessage">clk</button><br>
+        {{ updated }} -->
+
+
+        <!-- {{ reversedMessage }}
+        {{ reversedMessage }}
+        {{ reversedMessage }} -->
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data:{
+                red: 'red',
+                size: '30px',
+                isRed : false,
+                isBold : false,
+                message : 'hello',
+                updated : 'fuckyou'
+            },
+            methods:{
+                update(){
+                    this.isRed = !this.isRed;
+                    this.isBold  = !this.isBold;
+
+                },
+                changeMessage(){
+                    this.message='cozyboys';
+                }
+            },
+            computed:{
+                reversedMessage(){
+                    return this.message.split('').reverse().join('')
+                }
+            },
+            watch:{
+                message(newVal, oldVal){
+                    console.log(newVal, oldVal);
+                    this.updated = 'yas';
+                }
+            }
+        })
+    </script>
+</body>
+</html>
